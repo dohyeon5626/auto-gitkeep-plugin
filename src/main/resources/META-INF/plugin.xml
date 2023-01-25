@@ -1,0 +1,20 @@
+<idea-plugin>
+
+    <id>com.dohyeon5626.auto-gitkeep-plugin</id>
+    <name>Auto Gitkeep</name>
+    <vendor email="dohyeon5626@gmail.com" url="https://github.com/dohyeon5626">dohyeon5626</vendor>
+
+    <description><![CDATA[
+    <p>gitkeep automatic management jetbrains plugin</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      1.0 : Basic feature release
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+</idea-plugin>
