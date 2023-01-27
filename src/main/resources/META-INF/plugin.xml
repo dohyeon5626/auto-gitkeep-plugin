@@ -15,6 +15,13 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceInterface="com.dohyeon5626.service.FileService"
+                serviceImplementation="com.dohyeon5626.service.impl.FileServiceImpl"/>
     </extensions>
+
+    <applicationListeners>
+        <listener class="com.dohyeon5626.listener.FileListener"
+                topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </applicationListeners>
 
 </idea-plugin>
