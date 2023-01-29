@@ -2,7 +2,7 @@
 
     <id>com.dohyeon5626.auto-gitkeep-plugin</id>
     <name>Auto Gitkeep</name>
-    <vendor email="dohyeon5626@gmail.com" url="https://github.com/dohyeon5626">dohyeon5626</vendor>
+    <vendor email="kodohyeon71@gmail.com" url="https://github.com/dohyeon5626">dohyeon5626</vendor>
 
     <description><![CDATA[
     <h3>Gitkeep Automatic Management Plugin</h3>
@@ -12,7 +12,7 @@
         <a href="https://github.com/dohyeon5626/auto-gitkeep-plugin">Github</a> |
         <a href="https://github.com/dohyeon5626/auto-gitkeep-plugin/issues">Issue</a> |
         <a href="https://github.com/dohyeon5626">Developer</a><br>
-        dohyeon5626@gmail.com
+        kodohyeon71@gmail.com
     <p>
     ]]></description>
 
