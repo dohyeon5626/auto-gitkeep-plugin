@@ -5,22 +5,20 @@ plugins {
 }
 
 group = "com.dohyeon5626"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
 }
 
-// Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     version.set("2021.2")
-    type.set("IC") // Target IDE Platform
+    type.set("IC")
 
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
 tasks {
-    // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = "11"
         targetCompatibility = "11"
