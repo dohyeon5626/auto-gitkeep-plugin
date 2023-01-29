@@ -1,11 +1,11 @@
-package com.dohyeon5626.listener
+package com.dohyeon5626.event
 
 import com.dohyeon5626.service.FileService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
 
-class FileListener: BulkFileListener {
+class FileChangeListener: BulkFileListener {
 
     private val fileService = service<FileService>()
 
