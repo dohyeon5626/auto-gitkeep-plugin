@@ -9,7 +9,7 @@ class FileServiceImpl: FileService {
     private val fileSystem = LocalFileSystem.getInstance()
 
     override fun generateGitKeep(path: String) {
-        with(File(path).listFiles()!!) {
+        File(path).listFiles()?.apply {
             if (isEmpty()) {
                 createFile("$path/.gitkeep")
             } else if (any { it.name != ".gitkeep" }) {
@@ -28,8 +28,8 @@ class FileServiceImpl: FileService {
     }
 
     private fun deleteFile(file: File) {
-        file.delete()
-        refreshFilePath(file)
+        file.apply { delete() }
+            .also { refreshFilePath(it) }
     }
 
     private fun refreshFilePath(file: File) {
