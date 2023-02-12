@@ -20,7 +20,19 @@ class FileServiceImpl: FileService {
                     createFile("$path/.gitkeep")
                 } else if (any { it.name != ".gitkeep" }) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
-                    filter { it.isDirectory }.forEach { generateGitKeep(it.path) }
+                }
+            }
+    }
+
+    override fun generateGitKeepInAllSubfolder(path: String) {
+        path.takeIf { !isGitIgnorePath("$path/.gitkeep") }
+            ?.let { File(it).listFiles() }
+            ?.apply {
+                if (isEmpty()) {
+                    createFile("$path/.gitkeep")
+                } else if (any { it.name != ".gitkeep" }) {
+                    filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
+                    filter { it.isDirectory }.forEach { generateGitKeepInAllSubfolder(it.path) }
                 }
             }
     }

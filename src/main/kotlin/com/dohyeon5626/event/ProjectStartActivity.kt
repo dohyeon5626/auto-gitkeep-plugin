@@ -10,7 +10,7 @@ class ProjectStartActivity : StartupActivity {
     private val fileService = service<FileService>()
 
     override fun runActivity(project: Project) {
-        project.basePath?.also { fileService.generateGitKeep(it) }
+        project.basePath?.also { fileService.generateGitKeepInAllSubfolder(it) }
     }
 
 }
