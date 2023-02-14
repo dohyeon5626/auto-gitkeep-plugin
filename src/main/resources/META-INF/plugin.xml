@@ -18,6 +18,7 @@
 
     <change-notes><![CDATA[
       1.0 : Basic feature release
+      1.1 : Minimize navigation to improve performance, Add .gitkeep invisible settings
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
