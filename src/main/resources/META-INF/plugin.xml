@@ -27,8 +27,8 @@
         <postStartupActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
         <applicationService serviceInterface="com.dohyeon5626.service.FileService"
                 serviceImplementation="com.dohyeon5626.service.impl.FileServiceImpl"/>
-        <applicationService serviceInterface="com.dohyeon5626.service.VisibleSettingService"
-                            serviceImplementation="com.dohyeon5626.service.impl.VisibleSettingServiceImpl"/>
+        <applicationService serviceInterface="com.dohyeon5626.service.VisibleSettingComponent"
+                            serviceImplementation="com.dohyeon5626.service.impl.VisibleSettingComponentImpl"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
         <applicationConfigurable
                 parentId="tools"
