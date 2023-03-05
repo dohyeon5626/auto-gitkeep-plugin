@@ -36,7 +36,7 @@ class FileServiceImpl: FileService {
             }
     }
 
-    override fun deleteGitkeepVirtualFile() {
+    override fun deleteGitKeepVirtualFile() {
         ProjectManager.getInstance().openProjects.forEach {
             it.basePath?.also {
                 findGitKeep(it).forEach {
@@ -46,11 +46,11 @@ class FileServiceImpl: FileService {
         }
     }
 
-    override fun refreshGitkeepVirtualFile() {
+    override fun refreshGitKeepVirtualFile() {
         ProjectManager.getInstance().openProjects.forEach {
             it.basePath?.also {
                 findGitKeep(it).forEach {
-                    fileSystem.refreshAndFindFileByIoFile(it)?.refresh(false, false)
+                    fileSystem.refreshAndFindFileByIoFile(it)?.refresh(true, false)
                 }
             }
         }
@@ -84,8 +84,8 @@ class FileServiceImpl: FileService {
     }
 
     private fun refreshFilePath(file: File) {
-        if (visibleSettingComponent.state)
-            fileSystem.refreshAndFindFileByIoFile(file)?.refresh(false, false)
+        if (visibleSettingComponent.getVisible())
+            fileSystem.refreshAndFindFileByIoFile(file)?.refresh(true, false)
     }
 
 }

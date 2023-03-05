@@ -21,18 +21,18 @@ class VisibleSettingConfigurable: Configurable {
     }
 
     override fun createComponent(): JComponent {
-        checkBox.isSelected = visibleSettingComponent.state
+        checkBox.isSelected = visibleSettingComponent.getVisible()
         return panel
     }
 
-    override fun isModified() = checkBox.isSelected != visibleSettingComponent.state
+    override fun isModified() = checkBox.isSelected != visibleSettingComponent.getVisible()
 
     override fun apply() {
         checkBox.apply {
-            visibleSettingComponent.updateState(isSelected)
+            visibleSettingComponent.updateVisible(isSelected)
             if (isSelected)
-                fileService.refreshGitkeepVirtualFile()
-            else fileService.deleteGitkeepVirtualFile()
+                fileService.refreshGitKeepVirtualFile()
+            else fileService.deleteGitKeepVirtualFile()
         }
         fileService.refreshProjectTree()
     }

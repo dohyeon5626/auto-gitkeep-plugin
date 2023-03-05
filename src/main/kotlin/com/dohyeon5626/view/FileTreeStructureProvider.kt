@@ -16,7 +16,7 @@ class FileTreeStructureProvider: TreeStructureProvider {
         children: MutableCollection<AbstractTreeNode<*>>,
         settings: ViewSettings?
     ): Collection<AbstractTreeNode<*>> =
-        if(!visibleSettingComponent.state) children.filter { !(it is PsiFileNode && with(it.virtualFile) { this != null && name == ".gitkeep" }) }
+        if(!visibleSettingComponent.getVisible()) children.filter { !(it is PsiFileNode && with(it.virtualFile) { this != null && name == ".gitkeep" }) }
         else children
 
 }
