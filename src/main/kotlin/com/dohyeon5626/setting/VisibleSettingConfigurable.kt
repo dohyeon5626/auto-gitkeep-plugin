@@ -28,8 +28,13 @@ class VisibleSettingConfigurable: Configurable {
     override fun isModified() = checkBox.isSelected != visibleSettingComponent.state
 
     override fun apply() {
-        visibleSettingComponent.updateState(checkBox.isSelected)
-        fileService.refreshVirtualFileList()
+        checkBox.apply {
+            visibleSettingComponent.updateState(isSelected)
+            if (isSelected)
+                fileService.refreshGitkeepVirtualFile()
+            else fileService.deleteGitkeepVirtualFile()
+        }
+        fileService.refreshProjectTree()
     }
 
     override fun getDisplayName() = "Auto Gitkeep"

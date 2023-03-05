@@ -36,10 +36,43 @@ class FileServiceImpl: FileService {
             }
     }
 
-    override fun refreshVirtualFileList() {
+    override fun deleteGitkeepVirtualFile() {
+        ProjectManager.getInstance().openProjects.forEach {
+            it.basePath?.also {
+                findGitKeep(it).forEach {
+                    fileSystem.refreshAndFindFileByIoFile(it)?.delete(this)
+                }
+            }
+        }
+    }
+
+    override fun refreshGitkeepVirtualFile() {
+        ProjectManager.getInstance().openProjects.forEach {
+            it.basePath?.also {
+                findGitKeep(it).forEach {
+                    fileSystem.refreshAndFindFileByIoFile(it)?.refresh(false, false)
+                }
+            }
+        }
+    }
+
+    override fun refreshProjectTree() {
         ProjectManager.getInstance().openProjects.forEach {
             ProjectView.getInstance(it).refresh()
         }
+    }
+
+    private fun findGitKeep(path: String): List<File> {
+        val gitKeepFileList = mutableListOf<File>()
+        path.let { File(it).listFiles() }
+            ?.apply {
+                gitKeepFileList.addAll(filter { it.name == ".gitkeep" })
+                filter { it.isDirectory }.map { findGitKeep(it.path) }
+                    .forEach {
+                        gitKeepFileList.addAll(it)
+                    }
+            }
+        return gitKeepFileList
     }
 
     private fun createFile(path: String) {

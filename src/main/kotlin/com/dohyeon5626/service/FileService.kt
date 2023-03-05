@@ -4,6 +4,8 @@ interface FileService {
 
     fun generateGitKeep(path: String)
     fun generateGitKeepInAllSubfolder(path: String)
-    fun refreshVirtualFileList()
+    fun deleteGitkeepVirtualFile()
+    fun refreshGitkeepVirtualFile()
+    fun refreshProjectTree()
 
 }
