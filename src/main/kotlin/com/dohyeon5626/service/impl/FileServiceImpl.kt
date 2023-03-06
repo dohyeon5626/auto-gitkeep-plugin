@@ -50,7 +50,7 @@ class FileServiceImpl: FileService {
         ProjectManager.getInstance().openProjects.forEach {
             it.basePath?.also {
                 findGitKeep(it).forEach {
-                    fileSystem.refreshAndFindFileByIoFile(it)?.refresh(true, false)
+                    fileSystem.refreshAndFindFileByIoFile(it)?.refresh(false, false)
                 }
             }
         }
@@ -85,7 +85,7 @@ class FileServiceImpl: FileService {
 
     private fun refreshFilePath(file: File) {
         if (visibleSettingComponent.getVisible())
-            fileSystem.refreshAndFindFileByIoFile(file)?.refresh(true, false)
+            fileSystem.refreshAndFindFileByIoFile(file)?.refresh(false, false)
     }
 
 }
