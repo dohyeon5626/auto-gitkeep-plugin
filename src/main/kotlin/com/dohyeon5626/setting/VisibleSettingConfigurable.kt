@@ -2,6 +2,7 @@ package com.dohyeon5626.setting
 
 import com.dohyeon5626.service.FileService
 import com.dohyeon5626.service.VisibleSettingComponent
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.service
 import com.intellij.openapi.options.Configurable
 import java.awt.BorderLayout
@@ -13,6 +14,7 @@ class VisibleSettingConfigurable: Configurable {
 
     private val fileService = service<FileService>()
     private val visibleSettingComponent = service<VisibleSettingComponent>()
+    private val application = ApplicationManager.getApplication()
     private val panel = JPanel(BorderLayout())
     private val checkBox = JCheckBox("show .gitkeep")
 
@@ -28,13 +30,15 @@ class VisibleSettingConfigurable: Configurable {
     override fun isModified() = checkBox.isSelected != visibleSettingComponent.getVisible()
 
     override fun apply() {
-        checkBox.apply {
-            visibleSettingComponent.updateVisible(isSelected)
-            if (isSelected)
-                fileService.refreshGitKeepVirtualFile()
-            else fileService.deleteGitKeepVirtualFile()
+        application.runWriteAction {
+            checkBox.apply {
+                visibleSettingComponent.updateVisible(isSelected)
+                if (isSelected)
+                    fileService.refreshGitKeepVirtualFile()
+                else fileService.deleteGitKeepVirtualFile()
+            }
+            fileService.refreshProjectTree()
         }
-        fileService.refreshProjectTree()
     }
 
     override fun getDisplayName() = "Auto Gitkeep"
