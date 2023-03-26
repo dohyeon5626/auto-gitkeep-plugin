@@ -18,6 +18,10 @@ intellij {
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
+dependencies {
+    implementation ("com.github.arturopala:gitignore_3:0.4.0")
+}
+
 tasks {
     withType<JavaCompile> {
         sourceCompatibility = "11"

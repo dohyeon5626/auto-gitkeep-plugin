@@ -7,7 +7,7 @@ class VisibleSettingComponentImpl: VisibleSettingComponent {
 
     private val propertiesComponent = PropertiesComponent.getInstance()
 
-    override fun getVisible() = propertiesComponent.getBoolean("visible")
+    override fun getVisible(): Boolean = propertiesComponent.getBoolean("visible")
 
     override fun updateVisible(visible: Boolean) {
         propertiesComponent.setValue("visible", visible)

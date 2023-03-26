@@ -14,12 +14,14 @@ class FileChangeListener: BulkFileListener {
         events.filter { !it.isFromRefresh && !it.isFromSave }
             .forEach {
                 it.apply {
-                    if(File(path).isDirectory) {
-                        fileService.apply {
-                            generateGitKeep(path)
-                            generateGitKeep(getParentPath(path))
-                        }
-                    } else fileService.generateGitKeep(getParentPath(path))
+                    fileService.apply {
+                        if (File(path).isDirectory) {
+                            getProject(path).also {
+                                refreshGitKeep(it, path)
+                                refreshGitKeep(it, getParentPath(path))
+                            }
+                        } else refreshGitKeep(getProject(path), getParentPath(path))
+                    }
                 }
             }
     }
