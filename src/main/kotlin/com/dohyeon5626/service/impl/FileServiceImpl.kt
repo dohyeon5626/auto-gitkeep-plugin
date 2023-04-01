@@ -85,10 +85,10 @@ class FileServiceImpl: FileService {
             ?.also { gitignoreMap[project] = GitIgnore(it) }
     }
 
-    override fun getProject(path: String): Project =
+    override fun getProject(path: String): Project? =
         projectManager.openProjects
             .filter { it.basePath ?.let { path.contains(it) } ?: false }
-            .first()
+            .getOrNull(0)
 
     private fun findGitKeep(path: String): List<File> {
         val gitKeepFileList = mutableListOf<File>()

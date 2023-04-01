@@ -16,7 +16,7 @@ class FileChangeListener: BulkFileListener {
             filter { it.path.endsWith(".gitignore") }
                 .forEach {
                     fileService.run {
-                        getProject(it.path).also {
+                        getProject(it.path)?.also {
                             refreshGitIgnorePath(it)
                             it.basePath?.apply { refreshGitKeepInAllSubfolder(it, this) }
                         }
@@ -28,11 +28,11 @@ class FileChangeListener: BulkFileListener {
                     it.apply {
                         fileService.apply {
                             if (File(path).isDirectory) {
-                                getProject(path).also {
+                                getProject(path)?.also {
                                     refreshGitKeep(it, path)
                                     refreshGitKeep(it, getParentPath(path))
                                 }
-                            } else refreshGitKeep(getProject(path), getParentPath(path))
+                            } else getProject(path)?.also { refreshGitKeep(it, getParentPath(path)) }
                         }
                     }
                 }

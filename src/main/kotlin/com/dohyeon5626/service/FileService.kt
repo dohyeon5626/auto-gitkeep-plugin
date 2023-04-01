@@ -10,6 +10,6 @@ interface FileService {
     fun refreshGitKeepVirtualFile()
     fun refreshProjectTree()
     fun refreshGitIgnorePath(project: Project)
-    fun getProject(path: String): Project
+    fun getProject(path: String): Project?
 
 }
