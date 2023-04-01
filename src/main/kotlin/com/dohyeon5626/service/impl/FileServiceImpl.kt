@@ -28,6 +28,8 @@ class FileServiceImpl: FileService {
                         filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 } else if (any {it.name != ".gitkeep"}) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
+                } else if (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep")) {
+                    filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 }
             }
     }
@@ -42,8 +44,10 @@ class FileServiceImpl: FileService {
                         filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 } else if (any {it.name != ".gitkeep"}) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
-                    filter { it.isDirectory }.forEach { refreshGitKeepInAllSubfolder(project, it.path) }
+                } else if (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep")) {
+                    filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 }
+                filter { it.isDirectory }.forEach { refreshGitKeepInAllSubfolder(project, it.path) }
             }
     }
 
