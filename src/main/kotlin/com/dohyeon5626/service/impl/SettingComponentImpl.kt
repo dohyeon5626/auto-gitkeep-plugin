@@ -13,4 +13,10 @@ class SettingComponentImpl: SettingComponent {
         propertiesComponent.setValue("visible", visible)
     }
 
+    override fun getGitIgnoreUseStatus(): Boolean = propertiesComponent.getBoolean("gitIgnoreUseStatus")
+
+    override fun updateGitIgnoreUseStatus(gitIgnoreUseStatus: Boolean) {
+        propertiesComponent.setValue("gitIgnoreUseStatus", gitIgnoreUseStatus)
+    }
+
 }

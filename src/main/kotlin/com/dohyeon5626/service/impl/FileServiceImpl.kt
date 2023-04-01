@@ -22,13 +22,13 @@ class FileServiceImpl: FileService {
         path.let { File(it).listFiles() }
             ?.apply {
                 if (isEmpty()) {
-                    if (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep"))
+                    if (settingComponent.getGitIgnoreUseStatus() || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
                         createFile("$path/.gitkeep")
                     else
                         filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 } else if (any {it.name != ".gitkeep"}) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
-                } else if (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep")) {
+                } else if (!settingComponent.getGitIgnoreUseStatus() && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 }
             }
@@ -38,13 +38,13 @@ class FileServiceImpl: FileService {
         path.let { File(it).listFiles() }
             ?.apply {
                 if (isEmpty()) {
-                    if (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep"))
+                    if (settingComponent.getGitIgnoreUseStatus() || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
                         createFile("$path/.gitkeep")
                     else
                         filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 } else if (any {it.name != ".gitkeep"}) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
-                } else if (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep")) {
+                } else if (!settingComponent.getGitIgnoreUseStatus() && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
                     filter { it.name == ".gitkeep" }.forEach { deleteFile(it) }
                 }
                 filter { it.isDirectory }.forEach { refreshGitKeepInAllSubfolder(project, it.path) }
@@ -89,6 +89,8 @@ class FileServiceImpl: FileService {
         projectManager.openProjects
             .filter { it.basePath ?.let { path.contains(it) } ?: false }
             .getOrNull(0)
+
+    override fun getAllProjects(): List<Project> = projectManager.openProjects.asList()
 
     private fun findGitKeep(path: String): List<File> {
         val gitKeepFileList = mutableListOf<File>()

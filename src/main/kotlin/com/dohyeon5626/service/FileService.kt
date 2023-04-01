@@ -11,5 +11,6 @@ interface FileService {
     fun refreshProjectTree()
     fun refreshGitIgnorePath(project: Project)
     fun getProject(path: String): Project?
+    fun getAllProjects(): List<Project>
 
 }
