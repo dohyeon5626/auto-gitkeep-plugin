@@ -1,7 +1,7 @@
 package com.dohyeon5626.service.impl
 
 import com.dohyeon5626.service.FileService
-import com.dohyeon5626.service.VisibleSettingComponent
+import com.dohyeon5626.service.SettingComponent
 import com.github.arturopala.gitignore.GitIgnore
 import com.intellij.ide.projectView.ProjectView
 import com.intellij.openapi.components.service
@@ -14,7 +14,7 @@ import java.io.File
 class FileServiceImpl: FileService {
 
     private val fileSystem = LocalFileSystem.getInstance()
-    private val visibleSettingComponent = service<VisibleSettingComponent>()
+    private val settingComponent = service<SettingComponent>()
     private val projectManager = ProjectManager.getInstance()
     private var gitignoreMap = mutableMapOf<Project, GitIgnore>()
 
@@ -112,7 +112,7 @@ class FileServiceImpl: FileService {
     }
 
     private fun refreshFilePath(file: File) {
-        if (visibleSettingComponent.getVisible())
+        if (settingComponent.getVisible())
             fileSystem.refreshAndFindFileByIoFile(file)?.refresh(false, false)
     }
 

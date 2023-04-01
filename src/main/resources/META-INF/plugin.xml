@@ -28,13 +28,13 @@
         <postStartupActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
         <applicationService serviceInterface="com.dohyeon5626.service.FileService"
                 serviceImplementation="com.dohyeon5626.service.impl.FileServiceImpl"/>
-        <applicationService serviceInterface="com.dohyeon5626.service.VisibleSettingComponent"
-                            serviceImplementation="com.dohyeon5626.service.impl.VisibleSettingComponentImpl"/>
+        <applicationService serviceInterface="com.dohyeon5626.service.SettingComponent"
+                            serviceImplementation="com.dohyeon5626.service.impl.SettingComponentImpl"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
         <applicationConfigurable
                 parentId="tools"
-                instance="com.dohyeon5626.setting.VisibleSettingConfigurable"
-                id="VisibleSettingConfigurable"
+                instance="com.dohyeon5626.setting.SettingConfigurable"
+                id="settingConfigurable"
                 displayName="Auto Gitkeep"/>
     </extensions>
 

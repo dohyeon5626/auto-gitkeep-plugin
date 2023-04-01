@@ -1,7 +1,7 @@
 package com.dohyeon5626.setting
 
 import com.dohyeon5626.service.FileService
-import com.dohyeon5626.service.VisibleSettingComponent
+import com.dohyeon5626.service.SettingComponent
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.service
 import com.intellij.openapi.options.Configurable
@@ -10,10 +10,10 @@ import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-class VisibleSettingConfigurable: Configurable {
+class SettingConfigurable: Configurable {
 
     private val fileService = service<FileService>()
-    private val visibleSettingComponent = service<VisibleSettingComponent>()
+    private val settingComponent = service<SettingComponent>()
     private val application = ApplicationManager.getApplication()
     private val panel = JPanel(BorderLayout())
     private val checkBox = JCheckBox("show .gitkeep")
@@ -23,16 +23,16 @@ class VisibleSettingConfigurable: Configurable {
     }
 
     override fun createComponent(): JComponent {
-        checkBox.isSelected = visibleSettingComponent.getVisible()
+        checkBox.isSelected = settingComponent.getVisible()
         return panel
     }
 
-    override fun isModified() = checkBox.isSelected != visibleSettingComponent.getVisible()
+    override fun isModified() = checkBox.isSelected != settingComponent.getVisible()
 
     override fun apply() {
         application.runWriteAction {
             checkBox.apply {
-                visibleSettingComponent.updateVisible(isSelected)
+                settingComponent.updateVisible(isSelected)
                 if (isSelected)
                     fileService.refreshGitKeepVirtualFile()
                 else fileService.deleteGitKeepVirtualFile()

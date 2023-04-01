@@ -1,9 +1,9 @@
 package com.dohyeon5626.service.impl
 
-import com.dohyeon5626.service.VisibleSettingComponent
+import com.dohyeon5626.service.SettingComponent
 import com.intellij.ide.util.PropertiesComponent
 
-class VisibleSettingComponentImpl: VisibleSettingComponent {
+class SettingComponentImpl: SettingComponent {
 
     private val propertiesComponent = PropertiesComponent.getInstance()
 

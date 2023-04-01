@@ -1,6 +1,6 @@
 package com.dohyeon5626.service
 
-interface VisibleSettingComponent {
+interface SettingComponent {
 
     fun getVisible(): Boolean
 
