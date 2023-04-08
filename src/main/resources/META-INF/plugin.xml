@@ -20,6 +20,7 @@
       1.0 : Basic feature release
       1.1 : Minimize navigation to improve performance, Add .gitkeep invisible settings
       1.2 : Add visibility settings page
+      1.3 : Add .gitignore path settings
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
