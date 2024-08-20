@@ -15,7 +15,7 @@
     <p>
     ]]></description>
 
-    <idea-version since-build="232" />
+    <idea-version since-build="212" until-build="242.*" />
 
     <change-notes><![CDATA[
       1.0 : Basic feature release<br/>
