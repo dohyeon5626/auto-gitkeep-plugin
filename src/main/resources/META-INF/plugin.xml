@@ -15,8 +15,6 @@
     <p>
     ]]></description>
 
-    <idea-version since-build="212" until-build="242.*" />
-
     <change-notes><![CDATA[
       1.0 : Basic feature release<br/>
       1.1 : Minimize navigation to improve performance, Add .gitkeep invisible settings<br/>
