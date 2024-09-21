@@ -20,7 +20,8 @@
       1.1 : Minimize navigation to improve performance, Add .gitkeep invisible settings<br/>
       1.2 : Add visibility settings page<br/>
       1.3 : Add .gitignore path settings<br/>
-      1.4 : Change compatible versions<br/>
+      1.4 : Change compatible versions 242.*<br/>
+      1.5 : Change compatible versions 243.*<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
