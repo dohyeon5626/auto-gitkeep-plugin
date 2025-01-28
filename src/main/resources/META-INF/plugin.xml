@@ -22,6 +22,7 @@
       1.3 : Add .gitignore path settings<br/>
       1.4 : Change compatible versions 242.*<br/>
       1.5 : Change compatible versions 243.*<br/>
+      1.6 : Change compatible versions 251.*<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
