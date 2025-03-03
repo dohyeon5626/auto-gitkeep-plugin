@@ -1,10 +1,21 @@
 package com.dohyeon5626.service
 
-interface SettingComponent {
+import com.intellij.ide.util.PropertiesComponent
 
-    fun getVisible(): Boolean
-    fun updateVisible(visible: Boolean)
-    fun getGitIgnoreUseStatus(): Boolean
-    fun updateGitIgnoreUseStatus(gitIgnoreUseStatus: Boolean)
+class SettingComponent {
+
+    private val propertiesComponent = PropertiesComponent.getInstance()
+
+    fun getVisible() = propertiesComponent.getBoolean("visible")
+
+    fun updateVisible(visible: Boolean) {
+        propertiesComponent.setValue("visible", visible)
+    }
+
+    fun getGitIgnoreUseStatus() = propertiesComponent.getBoolean("gitIgnoreUseStatus")
+
+    fun updateGitIgnoreUseStatus(gitIgnoreUseStatus: Boolean) {
+        propertiesComponent.setValue("gitIgnoreUseStatus", gitIgnoreUseStatus)
+    }
 
 }

@@ -22,27 +22,33 @@ class SettingConfigurable: Configurable {
     private val gitIgnoreUseStatusCheckBox = JCheckBox("create .gitkeep in .gitignore path")
 
     init {
-        panel.layout = GridLayout(25, 1)
-        panel.add(visibleCheckBox)
-        panel.add(gitIgnoreUseStatusCheckBox)
+        panel.apply {
+            layout = GridLayout(25, 1)
+            add(visibleCheckBox)
+            add(gitIgnoreUseStatusCheckBox)
+        }
     }
 
     override fun createComponent(): JComponent {
-        visibleCheckBox.isSelected = settingComponent.getVisible()
-        gitIgnoreUseStatusCheckBox.isSelected = settingComponent.getGitIgnoreUseStatus()
+        settingComponent.apply {
+            visibleCheckBox.isSelected = getVisible()
+            gitIgnoreUseStatusCheckBox.isSelected = getGitIgnoreUseStatus()
+        }
         return panel
     }
 
-    override fun isModified() =
-        visibleCheckBox.isSelected != settingComponent.getVisible() ||
-                gitIgnoreUseStatusCheckBox.isSelected != settingComponent.getGitIgnoreUseStatus()
+    override fun isModified() = with(settingComponent) {
+        visibleCheckBox.isSelected != getVisible() || gitIgnoreUseStatusCheckBox.isSelected != getGitIgnoreUseStatus()
+    }
 
     override fun apply() {
         application.runWriteAction {
             visibleCheckBox.apply {
                 settingComponent.updateVisible(isSelected)
-                if (isSelected) fileService.refreshGitKeepVirtualFile()
-                else fileService.deleteGitKeepVirtualFile()
+                fileService.run {
+                    if (isSelected) refreshGitKeepVirtualFile()
+                    else deleteGitKeepVirtualFile()
+                }
             }
             gitIgnoreUseStatusCheckBox.apply {
                 settingComponent.updateGitIgnoreUseStatus(isSelected)

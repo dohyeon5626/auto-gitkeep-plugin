@@ -10,8 +10,10 @@ class ProjectStartActivity : StartupActivity {
     private val fileService = service<FileService>()
 
     override fun runActivity(project: Project) {
-        project.also { fileService.refreshGitIgnorePath(project) }
-            .basePath?.also { fileService.refreshGitKeepInAllSubfolder(project, it) }
+        with(fileService) {
+            refreshGitIgnorePath(project)
+            project.basePath?.also { refreshGitKeepInAllSubfolder(project, it) }
+        }
     }
 
 }

@@ -23,16 +23,15 @@
       1.4 : Change compatible versions 242.*<br/>
       1.5 : Change compatible versions 243.*<br/>
       1.6 : Change compatible versions 251.*<br/>
+      1.7 : Update developer info, Refactoring code<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
-        <applicationService serviceInterface="com.dohyeon5626.service.FileService"
-                serviceImplementation="com.dohyeon5626.service.impl.FileServiceImpl"/>
-        <applicationService serviceInterface="com.dohyeon5626.service.SettingComponent"
-                            serviceImplementation="com.dohyeon5626.service.impl.SettingComponentImpl"/>
+        <applicationService serviceInterface="com.dohyeon5626.service.FileService" serviceImplementation="com.dohyeon5626.service.FileService"/>
+        <applicationService serviceInterface="com.dohyeon5626.service.SettingComponent" serviceImplementation="com.dohyeon5626.service.SettingComponent"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
         <applicationConfigurable
                 parentId="tools"
@@ -42,8 +41,7 @@
     </extensions>
 
     <applicationListeners>
-        <listener class="com.dohyeon5626.event.FileChangeListener"
-                topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+        <listener class="com.dohyeon5626.event.FileChangeListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
     </applicationListeners>
 
 </idea-plugin>
