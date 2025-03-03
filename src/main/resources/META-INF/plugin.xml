@@ -31,7 +31,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
         <applicationService serviceInterface="com.dohyeon5626.service.FileService" serviceImplementation="com.dohyeon5626.service.FileService"/>
-        <applicationService serviceInterface="com.dohyeon5626.service.SettingComponent" serviceImplementation="com.dohyeon5626.service.SettingComponent"/>
+        <applicationService serviceInterface="com.dohyeon5626.service.SettingStateComponent" serviceImplementation="com.dohyeon5626.service.SettingStateComponent"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
         <applicationConfigurable
                 parentId="tools"

@@ -12,7 +12,7 @@ import java.io.File
 class FileService {
 
     private val fileSystem = LocalFileSystem.getInstance()
-    private val settingComponent = service<SettingComponent>()
+    private val settingStateComponent = service<SettingStateComponent>()
     private val projectManager = ProjectManager.getInstance()
     private var gitignoreMap = mutableMapOf<Project, GitIgnore>()
 
@@ -20,13 +20,12 @@ class FileService {
         path.let { File(it).listFiles() }
             ?.apply {
                 if (isEmpty()) {
-                    if (settingComponent.getGitIgnoreUseStatus() || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
+                    if (settingStateComponent.state.gitIgnoreUseStatus || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
                         createFile("$path/.gitkeep")
-                    else
-                        filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
+                    else filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
                 } else if (any { file -> file.name != ".gitkeep"}) {
                     filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
-                } else if (!settingComponent.getGitIgnoreUseStatus() && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
+                } else if (!settingStateComponent.state.gitIgnoreUseStatus && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
                     filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
                 }
             }
@@ -36,13 +35,13 @@ class FileService {
         path.let { File(it).listFiles() }
             ?.apply {
                 if (isEmpty()) {
-                    if (settingComponent.getGitIgnoreUseStatus() || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
+                    if (settingStateComponent.state.gitIgnoreUseStatus || (!isPathGitIgnore(project, path) && !isPathGitIgnore(project, "$path/.gitkeep")))
                         createFile("$path/.gitkeep")
                     else
                         filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
                 } else if (any { file -> file.name != ".gitkeep"}) {
                     filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
-                } else if (!settingComponent.getGitIgnoreUseStatus() && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
+                } else if (!settingStateComponent.state.gitIgnoreUseStatus && (isPathGitIgnore(project, path) || isPathGitIgnore(project, "$path/.gitkeep"))) {
                     filter { file -> file.name == ".gitkeep" }.forEach { file -> deleteFile(file) }
                 }
                 filter { file -> file.isDirectory }.forEach { file -> refreshGitKeepInAllSubfolder(project, file.path) }
@@ -104,7 +103,7 @@ class FileService {
     }
 
     private fun refreshFilePath(file: File) {
-        if (settingComponent.getVisible())
+        if (settingStateComponent.state.visible)
             fileSystem.refreshAndFindFileByIoFile(file)?.refresh(false, false)
     }
 
