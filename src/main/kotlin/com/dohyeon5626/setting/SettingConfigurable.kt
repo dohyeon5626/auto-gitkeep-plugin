@@ -52,19 +52,17 @@ class SettingConfigurable: Configurable {
             settingStateComponent.state.gitIgnoreUseStatus = gitIgnoreUseStatusCheckBox.isSelected
             settingStateComponent.state.autoCreateStatus = autoCreateStatusCheckBox.isSelected
 
-            visibleCheckBox.apply {
-                fileService.run {
-                    if (isSelected) refreshGitKeepVirtualFile()
-                    else deleteGitKeepVirtualFile()
-                }
+            fileService.run {
+                if (visibleCheckBox.isSelected) refreshGitKeepVirtualFile()
+                else deleteGitKeepVirtualFile()
             }
-            autoCreateStatusCheckBox.apply {
-                if (isSelected) {
-                    fileService.run { getAllProjects().forEach {
-                            project -> project.basePath?.also { refreshGitKeepInAllSubfolder(project, it) }
-                    }}
-                }
+
+            if (autoCreateStatusCheckBox.isSelected) {
+                fileService.run { getAllProjects().forEach {
+                        project -> project.basePath?.also { refreshGitKeepInAllSubfolder(project, it) }
+                }}
             }
+
             fileService.refreshProjectTree()
         }
     }
