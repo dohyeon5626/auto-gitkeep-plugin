@@ -44,4 +44,24 @@
         <listener class="com.dohyeon5626.event.FileChangeListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
     </applicationListeners>
 
+    <actions>
+        <separator>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last" relative-to-action="Refactor"/>
+        </separator>
+        <action
+                id="setGitkeep"
+                class="com.dohyeon5626.event.SetGitkeepAction"
+                text="Set .gitkeep"
+                description="Create a .gitkeep file in this folder">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last" relative-to-action="Refactor"/>
+        </action>
+        <action
+                id="deleteGitkeep"
+                class="com.dohyeon5626.event.DeleteGitkeepAction"
+                text="Delete .gitkeep"
+                description="Remove .gitkeep file from this folder">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="setGitkeep"/>
+        </action>
+    </actions>
+
 </idea-plugin>
