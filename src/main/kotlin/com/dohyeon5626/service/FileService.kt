@@ -48,6 +48,10 @@ class FileService {
             }
     }
 
+    fun deleteGitKeepInAllSubfolder(path: String) {
+        findGitKeep(path).forEach { deleteFile(it) }
+    }
+
     fun deleteGitKeepVirtualFile() {
         projectManager.openProjects.forEach { project ->
             project.basePath?.also { findGitKeep(it).forEach {

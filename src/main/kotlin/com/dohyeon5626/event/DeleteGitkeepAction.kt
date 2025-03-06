@@ -13,12 +13,13 @@ class DeleteGitkeepAction: AnAction() {
     private val settingStateComponent = service<SettingStateComponent>()
 
     override fun actionPerformed(event: AnActionEvent) {
-        // TODO gitkeep 삭제
+        event.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)!!
+            .forEach { fileService.deleteGitKeepInAllSubfolder(it.path) }
     }
 
     override fun update(event: AnActionEvent) {
-        val file = event.getData(CommonDataKeys.VIRTUAL_FILE)!!
-        event.presentation.isEnabledAndVisible = file.isDirectory
+        event.presentation.isEnabledAndVisible =
+            (event.getData(CommonDataKeys.VIRTUAL_FILE)!!.isDirectory && !settingStateComponent.state.autoCreateStatus)
     }
 
 }

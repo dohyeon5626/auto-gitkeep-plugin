@@ -13,15 +13,13 @@ class SetGitkeepAction: AnAction() {
     private val settingStateComponent = service<SettingStateComponent>()
 
     override fun actionPerformed(event: AnActionEvent) {
-        if (!settingStateComponent.state.autoCreateStatus) {
-            val file = event.getData(CommonDataKeys.VIRTUAL_FILE)!!
-            fileService.refreshGitKeepInAllSubfolder(event.project!!, file.path)
-        }
+        event.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)!!
+            .forEach { fileService.refreshGitKeepInAllSubfolder(event.project!!, it.path) }
     }
 
     override fun update(event: AnActionEvent) {
-        val file = event.getData(CommonDataKeys.VIRTUAL_FILE)!!
-        event.presentation.isEnabledAndVisible = file.isDirectory
+        event.presentation.isEnabledAndVisible =
+            (event.getData(CommonDataKeys.VIRTUAL_FILE)!!.isDirectory && !settingStateComponent.state.autoCreateStatus)
     }
 
 }
