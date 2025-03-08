@@ -45,15 +45,12 @@
     </applicationListeners>
 
     <actions>
-        <separator>
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last" relative-to-action="Refactor"/>
-        </separator>
         <action
                 id="setGitkeep"
                 class="com.dohyeon5626.event.SetGitkeepAction"
                 text="Set .gitkeep"
                 description="Create a .gitkeep file in this folder">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last" relative-to-action="Refactor"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
         <action
                 id="deleteGitkeep"
