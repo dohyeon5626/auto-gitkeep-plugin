@@ -5,7 +5,7 @@
     <vendor email="developer@dohyeon5626.com" url="https://github.com/dohyeon5626">dohyeon5626</vendor>
 
     <description><![CDATA[
-    <p>Automatically creates .gitkeep files in empty folders.</p><br>
+    <p>Auto Gitkeep allows you to easily set and delete .gitkeep files in your project.</p><br>
     <p>If you encounter any issues or have feature requests, please report them or contact me via email.</p><br>
     <p>
         <a href="https://github.com/dohyeon5626/auto-gitkeep-plugin">Github</a> |
