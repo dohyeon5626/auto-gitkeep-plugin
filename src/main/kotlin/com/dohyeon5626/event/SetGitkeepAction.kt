@@ -18,8 +18,9 @@ class SetGitkeepAction: AnAction() {
     }
 
     override fun update(event: AnActionEvent) {
-        event.presentation.isEnabledAndVisible =
-            (event.getData(CommonDataKeys.VIRTUAL_FILE)?.isDirectory ?: false && !settingStateComponent.state.autoCreateStatus)
+        event.getData(CommonDataKeys.VIRTUAL_FILE)?.run {
+            event.presentation.isEnabledAndVisible = (isDirectory && !settingStateComponent.state.autoCreateStatus)
+        }
     }
 
 }
