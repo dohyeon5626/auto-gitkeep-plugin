@@ -13,13 +13,13 @@ class DeleteGitkeepAction: AnAction() {
     private val settingStateComponent = service<SettingStateComponent>()
 
     override fun actionPerformed(event: AnActionEvent) {
-        event.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)!!
-            .forEach { fileService.deleteGitKeepInAllSubfolder(it.path) }
+        event.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)
+            ?.forEach { fileService.deleteGitKeepInAllSubfolder(it.path) }
     }
 
     override fun update(event: AnActionEvent) {
         event.presentation.isEnabledAndVisible =
-            (event.getData(CommonDataKeys.VIRTUAL_FILE)!!.isDirectory && !settingStateComponent.state.autoCreateStatus)
+            (event.getData(CommonDataKeys.VIRTUAL_FILE)?.isDirectory ?: false && !settingStateComponent.state.autoCreateStatus)
     }
 
 }

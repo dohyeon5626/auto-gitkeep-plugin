@@ -33,6 +33,7 @@
         <applicationService serviceInterface="com.dohyeon5626.service.FileService" serviceImplementation="com.dohyeon5626.service.FileService"/>
         <applicationService serviceInterface="com.dohyeon5626.service.SettingStateComponent" serviceImplementation="com.dohyeon5626.service.SettingStateComponent"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
+        <projectViewNodeDecorator implementation="com.dohyeon5626.view.FileProjectViewNodeDecorator"/>
         <applicationConfigurable
                 parentId="tools"
                 instance="com.dohyeon5626.setting.SettingConfigurable"
