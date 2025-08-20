@@ -52,22 +52,6 @@ class FileService {
         findGitKeep(path).forEach { deleteFile(it) }
     }
 
-    fun deleteGitKeepVirtualFile() {
-        projectManager.openProjects.forEach { project ->
-            project.basePath?.also { findGitKeep(it).forEach {
-                fileSystem.refreshAndFindFileByIoFile(it)?.delete(this)
-            }}
-        }
-    }
-
-    fun refreshGitKeepVirtualFile() {
-        projectManager.openProjects.forEach { project ->
-            project.basePath?.also { findGitKeep(it).forEach {
-                fileSystem.refreshAndFindFileByIoFile(it)?.refresh(false, false)
-            }}
-        }
-    }
-
     fun refreshProjectTree() {
         projectManager.openProjects.forEach { ProjectView.getInstance(it).refresh() }
     }
