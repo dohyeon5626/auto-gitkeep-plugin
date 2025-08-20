@@ -24,6 +24,7 @@
       1.5 : Change compatible versions 243.*<br/>
       1.6 : Change compatible versions 251.*<br/>
       2.0 : Update developer info, Enhance the management system for .gitkeep files<br/>
+      2.1 : Change compatible versions 252.*<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
