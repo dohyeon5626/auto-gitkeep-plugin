@@ -4,9 +4,7 @@ import com.intellij.ide.projectView.ProjectViewNode
 import com.intellij.ide.projectView.ProjectViewNodeDecorator
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.openapi.util.IconLoader
-import com.intellij.packageDependencies.ui.PackageDependenciesNode
 import com.intellij.psi.PsiFile
-import com.intellij.ui.ColoredTreeCellRenderer
 
 class FileProjectViewNodeDecorator : ProjectViewNodeDecorator {
 
@@ -16,7 +14,5 @@ class FileProjectViewNodeDecorator : ProjectViewNodeDecorator {
             data.setIcon(IconLoader.getIcon("/icon/gitkeepFileIcon.svg", javaClass))
         }
     }
-
-    override fun decorate(p0: PackageDependenciesNode?, p1: ColoredTreeCellRenderer?) {}
 
 }

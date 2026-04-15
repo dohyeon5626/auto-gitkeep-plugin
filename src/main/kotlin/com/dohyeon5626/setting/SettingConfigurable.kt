@@ -2,7 +2,7 @@ package com.dohyeon5626.setting
 
 import com.dohyeon5626.service.FileService
 import com.dohyeon5626.service.SettingStateComponent
-import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.components.service
 import com.intellij.openapi.options.Configurable
 import java.awt.BorderLayout
@@ -15,7 +15,6 @@ class SettingConfigurable: Configurable {
 
     private val fileService = service<FileService>()
     private val settingStateComponent = service<SettingStateComponent>()
-    private val application = ApplicationManager.getApplication()
     private val panel = JPanel(BorderLayout())
 
     private val autoCreateStatusCheckBox = JCheckBox("Automatically creates a .gitkeep file in all empty folders of the project.")
@@ -47,7 +46,7 @@ class SettingConfigurable: Configurable {
     }
 
     override fun apply() {
-        application.runWriteAction {
+        WriteAction.run<RuntimeException> {
             settingStateComponent.state.visible = visibleCheckBox.isSelected
             settingStateComponent.state.gitIgnoreUseStatus = gitIgnoreUseStatusCheckBox.isSelected
             settingStateComponent.state.autoCreateStatus = autoCreateStatusCheckBox.isSelected

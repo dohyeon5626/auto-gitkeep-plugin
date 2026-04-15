@@ -1,18 +1,18 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
-    id("org.jetbrains.intellij") version "1.6.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.intellij") version "1.17.4"
 }
 
 group = "com.dohyeon5626"
-version = "2.2"
+version = "2.3"
 
 repositories {
     mavenCentral()
 }
 
 intellij {
-    version.set("2021.2")
+    version.set("2023.1")
     type.set("IC")
 
     plugins.set(listOf(/* Plugin Dependencies */))
@@ -24,16 +24,16 @@ dependencies {
 
 tasks {
     withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "17"
     }
 
     patchPluginXml {
-        sinceBuild.set("212")
-        untilBuild.set("253.*")
+        sinceBuild.set("231")
+        untilBuild.set("261.*")
     }
 
     signPlugin {

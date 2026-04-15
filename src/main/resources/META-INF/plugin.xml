@@ -26,12 +26,13 @@
       2.0 : Update developer info, Enhance the management system for .gitkeep files<br/>
       2.1 : Change compatible versions 252.*<br/>
       2.2 : Change compatible versions 253.*<br/>
+      2.3 : Change compatible versions 261.*, Migrate deprecated APIs<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
+        <projectActivity implementation="com.dohyeon5626.event.ProjectStartActivity" />
         <applicationService serviceInterface="com.dohyeon5626.service.FileService" serviceImplementation="com.dohyeon5626.service.FileService"/>
         <applicationService serviceInterface="com.dohyeon5626.service.SettingStateComponent" serviceImplementation="com.dohyeon5626.service.SettingStateComponent"/>
         <treeStructureProvider implementation="com.dohyeon5626.view.FileTreeStructureProvider"/>
