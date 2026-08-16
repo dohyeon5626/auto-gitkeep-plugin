@@ -27,6 +27,7 @@
       2.1 : Change compatible versions 252.*<br/>
       2.2 : Change compatible versions 253.*<br/>
       2.3 : Change compatible versions 261.*, Migrate deprecated APIs<br/>
+      2.4 : Change compatible versions 262.*<br/>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
